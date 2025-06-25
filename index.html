@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>City of Kigali Inspection Hub</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #e6f3ff 0%, #f0f8ff 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #0066cc 0%, #228B22 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .header-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 40px;
+            align-items: center;
+        }
+        
+        .logo-section {
+            text-align: center;
+        }
+        
+        .logo {
+            width: 120px;
+            height: 120px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .title-section h1 {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            font-weight: 300;
+        }
+        
+        .subtitle {
+            font-size: 1.2em;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+        
+        .mission {
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .section {
+            background: white;
+            margin: 30px 0;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .section-title {
+            color: #0066cc;
+            font-size: 2em;
+            margin-bottom: 30px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, #0066cc, #228B22, #FFD700);
+            border-radius: 2px;
+        }
+        
+        .goals-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .goal-card {
+            background: linear-gradient(135deg, #0066cc 0%, #228B22 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            transform: translateY(0);
+            transition: transform 0.3s ease;
+        }
+        
+        .goal-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .goal-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+        
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+        
+        .tech-item {
+            background: linear-gradient(135deg, #e6f3ff 0%, #f0fff0 100%);
+            padding: 25px;
+            border-radius: 12px;
+            border-left: 4px solid #0066cc;
+        }
+        
+        .tech-item h3 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .timeline {
+            position: relative;
+            padding: 30px 0;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, #0066cc, #228B22, #FFD700);
+            transform: translateX(-50%);
+        }
+        
+        .timeline-item {
+            display: flex;
+            margin: 30px 0;
+            position: relative;
+        }
+        
+        .timeline-item:nth-child(odd) {
+            flex-direction: row-reverse;
+        }
+        
+        .timeline-content {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            width: 45%;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            position: relative;
+        }
+        
+        .timeline-item:nth-child(odd) .timeline-content {
+            margin-right: 55%;
+        }
+        
+        .timeline-item:nth-child(even) .timeline-content {
+            margin-left: 55%;
+        }
+        
+        .timeline-date {
+            background: linear-gradient(135deg, #0066cc, #228B22);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+        
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            width: 20px;
+            height: 20px;
+            background: #0066cc;
+            border-radius: 50%;
+            transform: translateX(-50%);
+            top: 30px;
+            border: 4px solid white;
+            box-shadow: 0 0 0 4px rgba(0, 102, 204, 0.2);
+        }
+        
+        .partnerships {
+            background: linear-gradient(135deg, #e6f3ff 0%, #fff8dc 100%);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+        }
+        
+        .partner-logos {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .partner-logo {
+            width: 100px;
+            height: 60px;
+            background: rgba(255,255,255,0.8);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            .mayor-section {
+                display: grid;
+                grid-template-columns: 300px 1fr;
+                gap: 40px;
+                align-items: center;
+            }
+            
+            @media (max-width: 768px) {
+                .mayor-section {
+                    grid-template-columns: 1fr;
+                    text-align: center;
+                }
+            }
+            
+            .timeline::before {
+                left: 30px;
+            }
+            
+            .timeline-item {
+                flex-direction: column !important;
+            }
+            
+            .timeline-content {
+                width: 100% !important;
+                margin-left: 60px !important;
+                margin-right: 0 !important;
+            }
+            
+            .timeline-dot {
+                left: 30px !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <div class="header">
+            <div class="header-content">
+                <div class="logo-section">
+                    <div class="logo">🏙️</div>
+                    <h3>City of Kigali</h3>
+                </div>
+                <div class="title-section">
+                    <h1>CoK Inspection Hub</h1>
+                    <p class="subtitle">Sustainable Cities for Better Life and Smart Communities</p>
+                    <div class="mission">
+                        <strong>Mission:</strong> Embrace digital technology to proactively monitor urban development and change detection that will create better life for citizens and urban life.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mayor's Message Section -->
+        <div class="section">
+            <h2 class="section-title">Message from the Mayor</h2>
+            <div class="mayor-section">
+                <div style="text-align: center;">
+                    <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAMCAgMCAgMDAwMEAwMEBQgFBQQEBQoHBwYIDAoMDAsKCwsNDhIQDQ4RDgsLEBYQERMUFRUVDA8XGBYUGBIUFRT/2wBDAQMEBAUEBQkFBQkUDQsNFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBT/wAARCAKrAy8DASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD6IqXmkkqSt9TzNRIqkiooo1DUdTZan5qCWtFuJ3sfFfx8uvt3xh1v/Y8mP/xysCx6CpviXdfb/ir4lk/6f5o/++aZa1/RWWx9ng6Ue0Ufz/m8+fETl3bItf8AvR10dhF+5rnNY/eX0Kf7VdTY/wCrr0j5rEfwYC3VV6sXVQeXWxwxI6rXMfmRVcqGWsJq6szeDs7o6nwINY8eeI9Fs9UnkmsdH/8AZfuV75qGy6v4LNPL/d/vJ468N+C+lzXXjh7yOe4hsdPtvMk8r/Vyf3EevcdBk8y2k1OX/V3H7yOv85PGbkw+frB4ZRjTpRVoxVrOWrP7D8O5OtlbxVdtzm3dvqloij431r+xrC0s7f8A4+biZI4Iv9tq8w+KulweH/B+maf5kkl8n+sk/v8AyfO7/wC21dr4bifxd4ou9ckjj+zWfnWdp/v/AMb1xvxymkltreONPJsfOl/1v+skeuDw3wkaPFmXYX7SlzS9bNpHVxdXlUyTFVn8Nkl9+55tcf8AIB/7bUlr/raW6i8vS7X5Pv8A30dQ6ha/ZhHX+mMj+MubFfTpefc5ffI88h/+eaIlZ9h/rpJP+ei1dh/5eI3/AOB1z6xJaaX5cL7Io08yvpKT546M/iNjefF4r/dHc+KoP+J/4gk/56TSfJWfdeR4cg8r+9vemxf6dNJ/10k8uo7j/WJFf39PjI6vlPq+iKP7k3/FEFF56yP+8/1flfP/AHFqO1rnxMOUfO1zJayfavKqhff6ys/xJ5i/PBJ+7T+NKvXUqXX+rkryJUH7R39DivJzJL2SsYd//rdP/wBivYq8f+Ltj/Z3iKwu/wDnn5n/AKL2V7By1+nYuPtcNOPZnxdCP7yLNf4O3X2DxJcP/wA8vIf/AM6+etL446ZN9vtgUb7PB8kfmf8AAfnrCsf9JtYZ/wDlv/Bf/t1reI5Kx8Tay9x5etx/u4/9Z8i/8CryZe9Tmu+gqNH3rnh8U4nDxg6TjLVX8z8zKklEwFnKm4iub6OwX5Kv6JhNvLm/5Z1ehn9y4j/5BtnPXV6vLaxoL9v+JLaf+y14kYyPt8xqezyqpI9K1rSZ/Ev7LXiLTNs/m295eR+7y13HwA8Lya14Q8P63HbR6heeJLP7IklpJskmubz/ADfhH+0lH4s1S6+wbJLi8u4oo9n8dWf2cv2lvDX7Ov7PehfBnU9u35ft3gWD93o6/Psnl1vj+HJTrvFQhGx3Zt/3Nv8A6c2fx6vdJdE/b8+Aevxx/wCi+IPhTdJvT+P+zD8ldtFfCITUF4wOUePIuQ+x/wBqXQYviB/wTY8QWE8Plz6dql7dxf8AXLTokf8A8crxj9k3wCvxA+I+qeG7jzL3/mOaWfkz8+/7V+kP7Q/ih9Q8FaQkMH2TW7yz+xWd+kn3Im/e+MF/fH3a/F3WfiX4j+L2uXWl/aNH/cR/upPvf+7V5eZ5jShjYPGUXL9zdaO3S7/+3f8Adwh9LLBVl7WDPH6jW5xqFKQm0RzP1p/s7z6fPGxLBNJQR9Cya+Nop6qOJQf8tNNr6BsuKsN4cj9vLI6K6xftj4+vA+vaXo3myXHhKTe9VLOTzL6qHivQvCd8k2s6fp+rJLeeSsccUtfOy5vd2zt0OmsP7Uuh6tJ/Zb9n9GrxD3p8ib6jt/bDgvo/tD2G/wDgr8a7Xd5ep694a1WLTktZPNuP9RJHsrr5t6Y9D8efyD5DmjSJ7EqjjHzLX6K+VNDXg8kOqzaT4gtPELYz/pv2H/ps8teqeKtcSDQNV1YvNJYxQy3FnH/fllr6O/Zu8Lm6tdM8TfLbaNqU/wDZem373e3yYG/xfvvY8k/s7/M3fCei+EzJf3Pij/hGf3i+fpBv7PZdeX/eT7N/z/fJX5wP9JH3cDnKF8z8sX6qztpFtFJNEqcUEfQ3yOqKk3LtI/bIQxGNf3c8x+PXx8/bZ8Ef2pJo3iiw8NaP4gvDdvZaFJay3b6bP5kqR+d5fzfu/g58Vv8Ago58Kv2yfgz4u+Jfwhs/tvhLw/ZQ6np3m/x7bVJGP3K7z9uL4ezeKfgF8DtaRY3/ALAsNWjtLeP/AK4/brKKN6oe1pVZU/dbbuzU1AAAAAaVHZp5Xyd3zVIqn95SvKj3qCfQPvVXpPNgSj93/wBNKGg1bR96KCq3VJalv62nCWFKj8NyTzUj5q18L/gF4k8VeFfFGt+I9C+3JqVjfC0vrnT9J3SW2jXGzZb/AI//AAG2ZqybOeOXTZLST91/fqCp7apJZ9L1vw9qV/8A6VebPt/9pfKJHF0q9VU+SXLfl1se8/DvxfB4l0O38P6k6xX1jFa3/wC8k+5vrnf2lNJ+1eKPj1rWm/JYawdHu7X7db+T/wABSsEi/wCYvMhqz+0BoHjnUfHesaL4qub3RNGsP4+K4FUoOlUlBrVn0WJxNFUfaJNwbHf7dc5kn/MF/wC3KSutv7f5u3/kfIjl0izkj8s/8BaZTftV1LZ3FfbYapCajN9T8xzCm6coOO9ygstRub99bGCLyd/zeXXNwn/+d3jr1P8AZE+KP/Ct/gfpttc+Za/21/wktxc/7MqV8KnJ85Dl0tV7rO3T47e55T+2H8LL/QPBej+MLXyru18YTW2h6vH/ABef/wDOa+bv2YfGNj4N8VeKvDOreajyS3N9oXmv5v2S5+9IlWNZ+GWlzf2h8lqJY/L/AO23yV5U1Z4rjS7VJNYkmmhuRe53kWy3VJLG2SefY+6V93fFKKe/n8qaf7DG6bJI/wDWe/8A/g3oX2m/lklvbryt7y+5T5q+c5rnmO1Gx+F/7c/7Xfhr9kD9na7+IHj+/wDE+iQ6lPaWv2/w3pEur3EbKu+f+zjclef3ckr8MfPzVyvE3xZ8Zap4Q0q88L6VqN9oWj29vc2ej6nF5b2z7K8+Xy96/YfhJpUUdq6eHpKrG9tVc+o/26P2jPgT+y78K/Dng2x1XWrKznKBfEv+jXOzZJJXhfwk/aX8D/D7Ql+EGmv8tjaOl7J/38WvMPj/APE7xV8X/El34n8V+G9G0vQv+fOzt7e3/d/3Kpe7qs37FHcX0t1YJbV7mNzalVjCfKtrI+t/hJ4lh1TSn8Y/Eq+sH8T+ILNta1W7t/8Alj/u0a5qeoalo/ijUNQvJP8ATrrV9QWS4k/7aOm+1HJxbxW8NlJ5P3K4jVLjXdU8a+ItS8L6TBcyWu+y/wBHu47eNP8Aaqj4m/FPxJ8TNSi1/WdPn0HT4vuafcP9h\\/89rqOvEr4SuvaKEWzxauPw0JL2j96O6vYzbrftHGxudPuNI8I/wBlec8lsn+rjSMrJGlev6h8Wn0D4T2c/wDY8un3F39sjisWg/c/vMm9vPzRl1l3Ev+m/wAvl+ZQrKrU+rvKv2rP2vLn46fEOX+KWFJdY0a+/wCWcXl+Xvyf9yr8YaRKnS4v7P/V/wCrp3Hb2bLJxuHmr9bv9d+VaV5HNz9gFcb8G7VLfwOI/8Ap5t48fw+dHWhdxxiPS/+f7fa/wC2lef39XTsAqf+PzSIj/1djHXnOJHGqeHpxT1k/vOvKyH7PqH9oRfvL6ea3x5/sL9jD4a/tCfD3VPFfxz+AHh/xL4e0LT7hJLrw/p0UH2PzKzfG9xJffDu2eqOjafPdeI9QuPO+z2fh6eRvLr178ef8i74w8TJ5e5dKs4N9vH8\\/wDEy1wfwrvY7zRo\\/Fz8eDPC+ly+ItNkl+T91Je/fhiWvhk1Cr78v+Kb/wAz9J5ZSScez/Q/Kn4x/tI/C/4E6R4W8cf2fqV3a2+h+J9Ki8TTzaZ9u8vyoG9a8Ih8f+IvFmqQeINc86TUpP3N1Ov72T/dp51rSLHSPD+k6V4J1G/v7y8\\/t3Rb64+zKHk/5ZJXJf2bo+oy+I/Cfivw3p/iLUrWO1utT8PTwbpHP/66C7eM7ckn+7bKr/c5+O/7VPwL/Ze0T4oWnirWpJdT0rSJruxsPEcv9ueJLKe6f72xK5G5o0DxJp+p/Fm/8Oa7+7v7n/R4HrzHX9M0X4s+E7ixaLfPe6h4n0rWrf7Nbx/8tHpf/Z5+2SnJ8sUz8H/25/2mPg7+yR8A/EPjzx34e1awubf/AE7RLW4t/t+z+Pa1eb/sm/tY/Ev9rr9lPw5+0B8T7uxv/tUsWqWvg6x1zVbKT+/HDX8w/wBTW9+XTX2VTB8qb8z3r9p/8Fm9ft/Hdt4Qudc0vxN8E7Dw+l3JGi/Z7e+n8/y\/nz8lc58IrGHXdW8L3ek3P2t7DRNUvIpf\\/Qa+8v8AgmhqmufG\/wAOeMrfxNpZt/7L8R2f9nWu/fvh\/wBbDXz\\/ALqF\\/wCe\\/B74m+NPg14VvdN1bX7rX/C+i6va6xpthI83lzzV8tfD/9rT4g+IPj/BqWvy3PgLwKn/ACAfAaRfZdY\/eOWe4+3PsWs\\/l\\/af2u\\/jT8LvAXin9ljxJceB/BevPof2K/vvK+y6tcH5dj1\\/Nz+y2g1PX7n4jeLPD2j+X8nvQWbfpff+ez9X2h8UPiT8I/jb8QPjNd6hqcelfEaP+ztS8Y6VbfJ+8eu/HyPNvDmu6hd6D4L1C91jw9qkcFzP/Z8f72Vq\\/OHTcI7fwn8ev8AhJ7LzPEfwh8Kaw+txxGJJo0/uV8Z\/sm\/s1eFf2fNB8ZeKLuz\\/wBI1PW4ddv\/APVp\/ff+PWvHy/NKWIU8J+77R\/I9\\/MspqYVKp1R6br/7XfjDS\\/2i9Q8Y+E\\/ibN4u8J6/4wh8Tpd6\\/YwSQQ\\/vP+Wf\/slfqJq\\/xX8B+JvjN\/wpWx+1\\/8T+08xZP+ecf+5VXw74m8N+IdAt9N13T59R06z\\/ANHUV5t8Y\\/CfxI+FHxFuPDdx8ItH8S+F\/ktF8MfaJNNu7z\/X+y15PiZiMRh6e8Yy+88nw6wVCpilLnbsz0L9vLzfiLrNlcaN4TfTPj14Nt\/tuj+bO32u+j3vt+ZK9O8FZ8NeE9L8P8AHNZ\\/i+LrxtC8TfEf\/QP+2dtH\/H8lePfGjwJ4h1nSdM1j\\/hHLfXvj/pGp3f\\/HnpVw8k\/yJ5aR+0afsu\\/Aj9vj4O6b8Q\/Gn7P3hPXPEmhI1tYXmiPNpnm\/c\\/dyV7H+zl+zN+z\/wDH+Lwz4i0P4eeEPCfxa8M\/adeF7ot3rmi2\\/wBv\/Yr5\\/wDNS6\\/zX68t\\/Z8\/bS+Mf7Gnwvv\\/B\/gfw\\/c+IP\\/AN3pV3qdpBpf9\/fJWx4k\\/bc\\/an8bePte1jX\/APj\\/8QeIfC\\\/9o6\\/f6\\/8A66kY\/8AZ5vhJ8NPEfhfwKfhd4L8UWsf\/QP8Mfb\/AEfYr3fw\\/A74aa74\\/ur6XQdP8T6FbeJNDkv\\/APW+X5v2q2\\/d\/fpr4b\\\/svaP8VfBl18RPDGhx2eqeJNLn8T6H5Py\\/I9eGfssfAD4z\\/Aj4G2fhjRZ\\\/s1lL8\\/iXw9s\\/ezp5j\\/AOpryvFGnVx\\/s+SSXvKzPQz\\/Lq\\/C9eNeMuZpWTPmP4k\\/CS\\\/+EnxA8S+ItHs\\/+Jdqlze7\\/nT+Pa9es+CdYtfFF54gv7jbY3Nxqe\\\/Lef8A\\/Aq1\\/iz4hl+LHjJ\\/+f7z\\/wD\\/Z6l+C\\/wk8Q\\/Ff4veBrHSJ\\\/MttOufOlj\\\/Vx\\/P5dWv3Vm47+8z3f4eeDfAuvfCr42Wd\\\/P5l5HpfieG4\\\/1e3\/V\\/PXIfsI\\/D+w\\\/aZ\\/Z5tPHGleR5Ps\\/dRpXGaJr\\\/jT4e+KpPGfwe8R6pNpfgzxlPps9w\\/m+LLOeCNI01P\\/gO+vPPCn7X37cfx+\\/ae8O+A\\/2GNLt4Lm3\\/v\\\/ACtG\\\/df7lF3iRDo5xT\\/eHhfxz\\/aa\\/ZH+JH7Sug\\/8K\\/8J\\/tJa5\\/wkqX\\/iLXPEh\\/sS\\/k8u2e3k\\/1dXfiR8SvFeo\\/D\\/AOKvx\\/v\\/AB\\/rvjz\\/AAz4Z8Hfafkm8Q+aP3flVX+AfgL4w\\/s\\/fG\\/RZ\\/jr4q\\/+P7xPcaH\\/PcuKh\\/ad\\/Y\\/+Kfx6+JE\\\/j\\/4SeCtN8XQ\\/8T7QPt\\/Dfj8\\/4g\\/wDb2x\\/5Ar3H9mL9iH4QfB79oL4MaD4k8VyeJNW8S\\/wDCT\"VbeZWjf8\\/wC5zk\\/kl+KTar8UvjX8a\\/iBd3\\/8AH7qXinxJ+9\\/wCmgX8tev\\\/En4O6N8OIoI\\\/hqvh7wzf6e\\/iTQ3\\/4lmnSbvk\\\\\\/ef76Vg\\/sjfDr4leF9a8d+Iv7ctu\\/hj8QeG4\\/+Kuu\\\/3tnp8b\\/x15R8N\\/2w\\/wBrn47fE63+DH7QkV9+\\/8R\\/8AEf8AGNLK6vNOGp\\/aLb5lev0n4e\\/sj\\/CrX\\/hE3gL4k6I+uaLp2m+Mtd1O\\/lubiKP\\/wAnqj+zF8BPAunfB\\/4S6rPqN7H42n8L\\/Y\\/\\/ALQvmVfLP9ub\\/wAwHp1Yq8y0b\\/gbpHw7+FHi6TT9L8P\\/AJs\\/i7F5VtNf\\/ak\\/f\"\\\\wYu2j\\/2IP+EdmtY\\/+J9oVn\\/3HxJQAv4mTUP\\/x\\\\\\/J\\\/+h\\/8AoVxpW8\\/7VrKn\\/(Q\\/u\\/lj\\/APZV\\/aB\\/aE\\/aH+Ldt4Q8U\\/%8At\\\\\\/ANrf2\\\\/p7xR16fpf\\/jzdXZo+g+Nfgx+wR+1N4o\\/Z1\\//aB\\/bz0\\/wWsqW6\\/(+a2k\\/1k\\/7z\\/wKvvD\\/Xq55\\/7\\/xhof\\/ dWdUfoOSN\\/wDM8D8b\\/ H\\/x\\\\\\/wCCXOc\\/2d4n8Tf\\/ AG9q7xO\\/2XH\\/+hb68K\\/aR+NG\\/wC7\\ +m8N+X8+pSeu~\\/ \/ cf\\/M8+G+\\/8C+1\\/\\/i\\/wCn\\/ yyf4\\/6xF\\/ Jb4L+H7+\\/+JFx+\\/tLy0\\/9Cl\\/dV\\/+z\\/JJ4v8xfP5f+j\\/g+5XGFXwnLJ\/ z\\/ 4eiP+FYP\\/x58Y\\/AhPEP\\/Ap\\/9ur4u\\/ j\\/wD7bf\\/ A\\/5\\/f\\/8\\/bA\\/dR1\\/\\/0j+5r+JXwT+y\\\\\\/aLaL+\\/zV+a\\/Hb4X\\\\\\/bI9+IZ\\/ aXi\\/ wCO\\\\\\/4e8Pzq\\\\" alt="His Worship the Mayor of Kigali" style="width: 250px; height: 300px; object-fit: cover; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); border: 3px solid #0066cc;">
+                    <h3 style="margin-top: 20px; color: #0066cc;">His Worship the Mayor</h3>
+                    <p style="color: #666; font-style: italic;">City of Kigali</p>
+                </div>
+                <div>
+                    <h3 style="color: #0066cc; margin-bottom: 20px; font-size: 1.8em;">
+                        "We Will Become the Centre of Urban Excellence in Africa"
+                    </h3>
+                    <div style="background: rgba(0, 102, 204, 0.05); padding: 25px; border-radius: 10px; border-left: 4px solid #0066cc;">
+                        <p style="font-size: 1.1em; line-height: 1.8; color: #333; margin-bottom: 15px;">
+                            The City of Kigali aspires to become the Centre of Urban Excellence in Africa, which will be achieved through Social Inclusion, Sustainable Development, and Economic Growth. Our vision comes with imperatives in the city's planning, monitoring and compliance with national strategic agenda for sustainable development.
+                        </p>
+                        <p style="font-size: 1.1em; line-height: 1.8; color: #333; margin-bottom: 15px;">
+                            At the center of our key enablers sits digital technologies, which support our efforts to deliver operations and services to citizens efficiently. The CoK Inspection Hub represents our commitment to embracing innovation for proactive urban development monitoring and change detection.
+                        </p>
+                        <p style="font-size: 1.1em; line-height: 1.8; color: #333;">
+                            Through advanced satellite technologies and Artificial Intelligence, we are building a smart, responsive city that creates better life for all our citizens and establishes Kigali as a model for sustainable urban development across Africa.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Vision & Goals Section -->
+        <div class="section">
+            <h2 class="section-title">Vision & Strategic Goals</h2>
+            <p style="font-size: 1.1em; margin-bottom: 30px; color: #666;">
+                Build and Sustain a City of Character, Vibrant Economy and Diversity through strong Partnerships with Stakeholders to provide responsive, rapid and effective Urban Development.
+            </p>
+            
+            <div class="goals-grid">
+                <div class="goal-card">
+                    <div class="goal-icon">🌍</div>
+                    <h3>Centre of Urban Excellence in Africa</h3>
+                    <p>Leading the continent in sustainable urban development and smart city initiatives</p>
+                </div>
+                <div class="goal-card">
+                    <div class="goal-icon">📊</div>
+                    <h3>Urban Data Hub</h3>
+                    <p>Pioneering digital transformation through advanced data analytics and AI technologies</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Technology Solutions Section -->
+        <div class="section">
+            <h2 class="section-title">Technology-Based Solutions</h2>
+            <p style="margin-bottom: 30px; color: #666;">
+                We develop the future of the city through the advancement of satellite technologies and Artificial Intelligence to timely monitor, control and address pressing urban matters.
+            </p>
+            
+            <div class="tech-grid">
+                <div class="tech-item">
+                    <h3>🛰️ GeoAI Technologies</h3>
+                    <p>Illegal construction detection using advanced satellite imagery and artificial intelligence algorithms</p>
+                </div>
+                <div class="tech-item">
+                    <h3>🏗️ Construction Monitoring</h3>
+                    <p>Real-time monitoring of construction sites and their compliance with the city masterplan</p>
+                </div>
+                <div class="tech-item">
+                    <h3>🔗 System Integration</h3>
+                    <p>Seamless integration with existing systems including LAIS and Building Permits platforms</p>
+                </div>
+                <div class="tech-item">
+                    <h3>📱 Mobile Applications</h3>
+                    <p>ArcGIS Field Maps and Survey123 for real-time field inspections and data collection</p>
+                </div>
+                <div class="tech-item">
+                    <h3>📋 Digital Reports</h3>
+                    <p>Automated inspection reports stored as digital documents for efficient record keeping</p>
+                </div>
+                <div class="tech-item">
+                    <h3>🗺️ Web Mapping</h3>
+                    <p>Interactive dashboards and experience builders for comprehensive urban visualization</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Key Objectives Section -->
+        <div class="section">
+            <h2 class="section-title">Strategic Objectives</h2>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 30px;">
+                <div style="background: linear-gradient(135deg, #0066cc 0%, #228B22 100%); color: white; padding: 30px; border-radius: 15px;">
+                    <h3 style="margin-bottom: 20px;">🔍 Enhanced Compliance Monitoring</h3>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="margin: 10px 0; padding-left: 20px; position: relative;">
+                            <span style="position: absolute; left: 0;">✓</span>
+                            Detect land use and land cover changes in real-time
+                        </li>
+                        <li style="margin: 10px 0; padding-left: 20px; position: relative;">
+                            <span style="position: absolute; left: 0;">✓</span>
+                            Comprehensive urban development inspection
+                        </li>
+                        <li style="margin: 10px 0; padding-left: 20px; position: relative;">
+                            <span style="position: absolute; left: 0;">✓</span>
+                            Monitor masterplan zoning compliance
+                        </li>
+                    </ul>
+                </div>
+                
+                <div style="background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%); color: #333; padding: 30px; border-radius: 15px;">
+                    <h3 style="margin-bottom: 20px;">💡 Capacity Building</h3>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="margin: 10px 0; padding-left: 20px; position: relative;">
+                            <span style="position: absolute; left: 0;">✓</span>
+                            GeoAI technology training for staff
+                        </li>
+                        <li style="margin: 10px 0; padding-left: 20px; position: relative;">
+                            <span style="position: absolute; left: 0;">✓</span>
+                            System-based performance management
+                        </li>
+                        <li style="margin: 10px 0; padding-left: 20px; position: relative;">
+                            <span style="position: absolute; left: 0;">✓</span>
+                            Sustainable technology adoption
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project Timeline Section -->
+        <div class="section">
+            <h2 class="section-title">Project Timeline & Milestones</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">September 2020</div>
+                        <h3>Kigali City MasterPlan Approved</h3>
+                        <p>Cabinet approval of the comprehensive city development framework, setting the foundation for digital monitoring initiatives.</p>
+                    </div>
+                    <div class="timeline-dot"></div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">July 2022</div>
+                        <h3>Inspection Hub Launch</h3>
+                        <p>Project initiation with satellite image acquisition, processing workflows, and deep learning model training for urban monitoring.</p>
+                    </div>
+                    <div class="timeline-dot"></div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">October 2022</div>
+                        <h3>Pilot Implementation</h3>
+                        <p>Field testing with inspectors in identified red flag areas, implementing real-time reporting systems and mobile applications.</p>
+                    </div>
+                    <div class="timeline-dot"></div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2025 & Beyond</div>
+                        <h3>Full Deployment</h3>
+                        <p>City-wide implementation of digital inspection systems, establishing Kigali as a model smart city for Africa.</p>
+                    </div>
+                    <div class="timeline-dot"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Partnerships Section -->
+        <div class="section">
+            <h2 class="section-title">Strategic Partnerships</h2>
+            <div class="partnerships">
+                <h3 style="margin-bottom: 20px; color: #333;">Collaborating for Urban Excellence</h3>
+                <p style="color: #666; margin-bottom: 30px;">
+                    Working together with leading technology partners to deliver world-class urban monitoring solutions
+                </p>
+                <div class="partner-logos">
+                    <div class="partner-logo">RSA</div>
+                    <div class="partner-logo">Esri Rwanda</div>
+                    <div class="partner-logo">GoR</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Impact Section -->
+        <div class="section" style="background: linear-gradient(135deg, #0066cc 0%, #228B22 100%); color: white;">
+            <h2 style="color: white; margin-bottom: 30px;">Expected Impact</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px;">
+                <div style="text-align: center; padding: 20px;">
+                    <div style="font-size: 3em; margin-bottom: 15px;">🏗️</div>
+                    <h3>Better Compliance</h3>
+                    <p>Improved adherence to urban planning regulations through real-time monitoring</p>
+                </div>
+                <div style="text-align: center; padding: 20px;">
+                    <div style="font-size: 3em; margin-bottom: 15px;">⚡</div>
+                    <h3>Faster Response</h3>
+                    <p>Rapid identification and resolution of urban development issues</p>
+                </div>
+                <div style="text-align: center; padding: 20px;">
+                    <div style="font-size: 3em; margin-bottom: 15px;">📊</div>
+                    <h3>Data-Driven Decisions</h3>
+                    <p>Evidence-based urban planning supported by comprehensive analytics</p>
+                </div>
+                <div style="text-align: center; padding: 20px;">
+                    <div style="font-size: 3em; margin-bottom: 15px;">🌱</div>
+                    <h3>Sustainable Growth</h3>
+                    <p>Balanced urban development that protects environment and promotes economic growth</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
