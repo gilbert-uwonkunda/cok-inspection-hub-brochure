@@ -226,27 +226,34 @@
             padding: 30px;
             border-radius: 15px;
             text-align: center;
-        }
-        
-        .partner-logos {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            margin-top: 20px;
-            flex-wrap: wrap;
-        }
-        
         .partner-logo {
-            width: 100px;
-            height: 60px;
-            background: rgba(255,255,255,0.8);
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            color: #333;
-        }
+    width: 120px;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 12px;
+    padding: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease;
+}
+
+.partner-logo:hover {
+    transform: scale(1.05);
+}
+
+.partner-logo img {
+    width: 80px;
+    height: auto;
+    margin-bottom: 10px;
+    border-radius: 6px;
+}
+
+.partner-logo p {
+    font-size: 0.95em;
+    color: #333;
+    font-weight: bold;
+    margin: 0;
+}
+
         
         @media (max-width: 768px) {
             .header-content {
@@ -482,13 +489,17 @@
                 <p style="color: #666; margin-bottom: 30px;">
                     Working together with leading technology partners to deliver world-class urban monitoring solutions
                 </p>
-                <div class="partner-logos">
-                    <div class="partner-logo">RSA</div>
-                    <div class="partner-logo">Esri Rwanda</div>
-                    <div class="partner-logo">GoR</div>
                 </div>
-            </div>
-        </div>
+    <div class="partner-logo">
+        <img src="esriRwanda.jpg" alt="Esri Rwanda">
+        <span>Esri Rwanda</span>
+    </div>
+    <div class="partner-logo">
+        <img src="gor.jpg" alt="GoR">
+        <span>GoR</span>
+    </div>
+</div>
+</div>
 
         <!-- Impact Section -->
         <div class="section" style="background: linear-gradient(135deg, #0066cc 0%, #228B22 100%); color: white;">
