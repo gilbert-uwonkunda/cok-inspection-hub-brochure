@@ -301,18 +301,18 @@
         }
 
         .map-container {
-            padding: 0;
-            height: 280px;
-            overflow: hidden;
-        }
-
+    padding: 0;
+    height: 280px;                    /* ← ALSO CAUSES CROPPING */
+    overflow: hidden;
+}
         .static-map {
-            width: 100%;
-            height: 280px;
-            object-fit: cover;
-            display: block;
-            transition: transform 0.3s ease;
-        }
+    width: 100%;
+    height: auto;                     /* ← LET MAPS USE NATURAL HEIGHT */
+    object-fit: contain;              /* ← SHOW ENTIRE MAP, NO CROPPING */
+    display: block;
+    transition: transform 0.3s ease;
+    max-height: 350px;                /* ← PREVENT MAPS FROM BEING TOO BIG */
+}
 
         .static-map:hover {
             transform: scale(1.03);
