@@ -275,6 +275,44 @@
             gap: 40px;
             align-items: center;
         }
+
+        .map-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .map-item {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .map-title {
+            padding: 20px;
+            background: linear-gradient(135deg, #0066cc 0%, #228B22 100%);
+            color: white;
+            margin: 0;
+            font-size: 1.2em;
+        }
+
+        .map-container {
+            padding: 0;
+        }
+
+        .static-map {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .static-map:hover {
+            transform: scale(1.05);
+            cursor: pointer;
+        }
         
         @media (max-width: 768px) {
             .header-content {
@@ -517,6 +555,44 @@
                     <div class="partner-logo">
                         <img src="gor.png" alt="GoR">
                         <span>GoR</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Maps Section -->
+        <div class="section">
+            <h2 class="section-title">City Maps & Inspection Zones</h2>
+            <p style="color: #666; margin-bottom: 30px;">
+                Explore Kigali's urban development zones and key inspection areas through detailed mapping and satellite imagery
+            </p>
+            
+            <div class="map-grid">
+                <div class="map-item">
+                    <h3 class="map-title">🗺️ City Overview Map</h3>
+                    <div class="map-container">
+                        <img src="sattelite.png" alt="Kigali City Overview" class="static-map">
+                    </div>
+                </div>
+                
+                <div class="map-item">
+                    <h3 class="map-title">🔍 Inspection Zones</h3>
+                    <div class="map-container">
+                        <img src="inspectionZones.png" alt="Inspection Zones" class="static-map">
+                    </div>
+                </div>
+                
+                <div class="map-item">
+                    <h3 class="map-title">📋 Construction Sites Monitoring</h3>
+                    <div class="map-container">
+                        <img src="constructionsites.jpg" alt="Construction Sites Monitoring" class="static-map">
+                    </div>
+                </div>
+                
+                <div class="map-item">
+                    <h3 class="map-title">🛰️ Satellite Monitoring</h3>
+                    <div class="map-container">
+                        <img src="Oversatellite.jpg" alt="Satellite Monitoring Areas" class="static-map">
                     </div>
                 </div>
             </div>
